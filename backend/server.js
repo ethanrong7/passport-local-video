@@ -11,7 +11,7 @@ const app = express();
 const User = require("./user");
 //----------------------------------------- END OF IMPORTS---------------------------------------------------
 mongoose.connect(
-  "mongodb+srv://{Place Your Username Here!}:{Place Your Password Here!}@cluster0-q9g9s.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://admin-ethan:step2isfiddy@cluster0.rccno.mongodb.net/budget_app?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -64,18 +64,27 @@ app.post("/register", (req, res) => {
     if (doc) res.send("User Already Exists");
     if (!doc) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
+      
       const newUser = new User({
         username: req.body.username,
         password: hashedPassword,
       });
       await newUser.save();
-      res.send("User Created");
+      
+      passport.authenticate("local")(req, res, function(){
+        res.json("Logged In")
+        console.log("User is: " + req.user);
+      });
+      
     }
   });
 });
 app.get("/user", (req, res) => {
-  res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+  if (req.isAuthenticated()) {
+    res.send(req.user);
+  } else {
+    res.send("you are not logged in");
+  }
 });
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 //Start Server

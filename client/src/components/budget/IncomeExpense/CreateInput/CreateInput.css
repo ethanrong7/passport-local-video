@@ -1,0 +1,14 @@
+.Input-Category{ 
+    width: 45%;
+    display: inline-block;
+}
+
+.Input-Amount{ 
+    width: 45%;
+    display: inline-block;
+}
+
+.Input-Button{
+    width: 10%;
+    display:inline-block;
+}

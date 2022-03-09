@@ -1,0 +1,21 @@
+.Budget{
+    margin-left: 0%;
+    width: 40%;
+    display: inline-block;
+}
+
+.Category{
+    width: 50%;
+    display: inline-block;
+}
+
+.Amount{
+    width: 50%;
+    display: inline-block;
+}
+
+.IncomeExpenseInput{
+    margin-left: 0%;
+    width: 50%;
+    display: inline-block;
+}
